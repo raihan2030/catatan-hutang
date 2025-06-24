@@ -1,0 +1,47 @@
+{% extends 'main_layout.html' %} 
+
+{% block content %}
+<table class="table table-bordered">
+  <thead>
+    <tr class="table-secondary">
+      <th scope="col">#</th>
+      <th scope="col">Nama Pemberi</th>
+      <th scope="col">Nama Peminjam</th>
+      <th scope="col">Jumlah</th>
+      <th scope="col">Tanggal Pinjam</th>
+      <th scope="col">Tanggal Jatuh Tempo</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for h in hutang %}
+    <tr>
+      <td>{{ forloop.counter}}</td>
+      <td>{{ h.nama_pemberi }}</td>
+      <td>{{ h.nama_peminjam }}</td>
+      <td>{{ h.jumlah|floatformat:0 }}</td>
+      <td>{{ h.tanggal_pinjam }}</td>
+      <td>{{ h.tanggal_jatuh_tempo }}</td>
+      <td>
+        {% if h.status == "lunas" %}
+          <span class="text-success fw-bold">Lunas</span>
+        {% else %}
+          <span class="text-danger fw-bold">Belum Lunas</span>
+        {% endif %}
+      </td>
+      <td>
+        <div class="d-flex justify-content-center">
+          <a href="#" class="btn btn-warning me-2">Edit</a>
+          <a href="#" class="btn btn-danger">Hapus</a>
+        </div>
+      </td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4">Tidak ada data hutang.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

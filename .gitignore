@@ -1,0 +1,13 @@
+# Environments
+.env
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# SQLite database
+db.sqlite3
+
+# Docker
+.dockerignore
+docker-compose.yml.override

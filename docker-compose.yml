@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app  # Sinkronisasi kode langsung (memenuhi syarat #6)
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env  # Memuat variabel dari file .env (memenuhi syarat #7)
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/ # Data persisten (memenuhi syarat #4)
+    env_file:
+      - .env  # Memuat variabel dari file .env untuk setup database
+
+volumes:
+  postgres_data:
