@@ -1,0 +1,43 @@
+{% extends 'main_layout.html' %} 
+
+{% block title %}Edit Data Hutang{% endblock title %} 
+
+{% block content %}
+<h2>Edit Data Hutang</h2>
+<form method="post" class="mt-4">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="nama_pemberi" class="form-label">Nama Pemberi</label>
+    <input type="text" class="form-control" id="nama_pemberi" name="nama_pemberi" value="{{ hutang.nama_pemberi }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+    <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" value="{{ hutang.nama_peminjam }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="jumlah" class="form-label">Jumlah</label>
+    <input type="number" class="form-control" id="jumlah" name="jumlah" step="1000" value="{{ hutang.jumlah|floatformat:0 }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam</label>
+    <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" value="{{ hutang.tanggal_pinjam|date:'Y-m-d' }}" required>
+  </div>
+  <div class="mb-3">
+    <label for="tanggal_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
+    <input type="date" class="form-control" id="tanggal_jatuh_tempo" name="tanggal_jatuh_tempo" value="{{ hutang.tanggal_jatuh_tempo|date:'Y-m-d' }}">
+  </div>
+  <div class="mb-3">
+    <label for="status" class="form-label">Status</label>
+    <select class="form-select" id="status" name="status">
+      <option value="belum_lunas" {% if hutang.status == 'belum_lunas' %}selected{% endif %}>Belum Lunas</option>
+      <option value="lunas" {% if hutang.status == 'lunas' %}selected{% endif %}>Lunas</option>
+    </select>
+  </div>
+  <div class="mb-3">
+    <label for="catatan" class="form-label">Catatan</label>
+    <textarea class="form-control" id="catatan" name="catatan" rows="3">{{ hutang.catatan }}</textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Update</button>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Batal</a>
+</form>
+{% endblock content %}

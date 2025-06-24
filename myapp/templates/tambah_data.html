@@ -1,0 +1,32 @@
+{% extends 'main_layout.html' %} {% block title %}Tambah Data Hutang{% endblock title %} {% block content %}
+<h2>Tambah Data Hutang Baru</h2>
+<form method="post" class="mt-4">
+  {% csrf_token %}
+  <div class="mb-3">
+    <label for="nama_pemberi" class="form-label">Nama Pemberi</label>
+    <input type="text" class="form-control" id="nama_pemberi" name="nama_pemberi" required />
+  </div>
+  <div class="mb-3">
+    <label for="nama_peminjam" class="form-label">Nama Peminjam</label>
+    <input type="text" class="form-control" id="nama_peminjam" name="nama_peminjam" required />
+  </div>
+  <div class="mb-3">
+    <label for="jumlah" class="form-label">Jumlah</label>
+    <input type="number" class="form-control" id="jumlah" name="jumlah" step="1000" required />
+  </div>
+  <div class="mb-3">
+    <label for="tanggal_pinjam" class="form-label">Tanggal Pinjam</label>
+    <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" required />
+  </div>
+  <div class="mb-3">
+    <label for="tanggal_jatuh_tempo" class="form-label">Tanggal Jatuh Tempo</label>
+    <input type="date" class="form-control" id="tanggal_jatuh_tempo" name="tanggal_jatuh_tempo" />
+  </div>
+  <div class="mb-3">
+    <label for="catatan" class="form-label">Catatan</label>
+    <textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Simpan</button>
+  <a href="{% url 'home' %}" class="btn btn-secondary">Batal</a>
+</form>
+{% endblock content %}

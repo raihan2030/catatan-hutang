@@ -20,5 +20,8 @@ from myapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', view=views.home, name='home')
+    path('', views.home, name='home'),
+    path('tambah/', views.tambah_data, name='tambah_data'),
+    path('edit/<int:pk>/', views.edit_data, name='edit_data'),
+    path('hapus/<int:pk>/', views.hapus_data, name='hapus_data'),
 ]

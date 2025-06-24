@@ -11,12 +11,12 @@
   <body class="d-flex flex-column min-vh-100">
     <nav class="navbar navbar-expand-lg bg-body-secondary">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="#">Pencatatan Hutang</a>
+        <a href="{% url 'home' %}" class="navbar-brand fw-bold">Pencatatan Hutang</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
-          <a href="#" class="btn btn-primary ms-auto">Tambah Data</a>
+          <a href="{% url 'tambah_data' %}" class="btn btn-primary ms-auto">Tambah Data</a>
         </div>
       </div>
     </nav>

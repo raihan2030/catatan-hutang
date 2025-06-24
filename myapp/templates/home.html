@@ -1,6 +1,4 @@
-{% extends 'main_layout.html' %} 
-
-{% block content %}
+{% extends 'main_layout.html' %} {% block content %}
 <table class="table table-bordered">
   <thead>
     <tr class="table-secondary">
@@ -25,21 +23,24 @@
       <td>{{ h.tanggal_jatuh_tempo }}</td>
       <td>
         {% if h.status == "lunas" %}
-          <span class="text-success fw-bold">Lunas</span>
+        <span class="text-success fw-bold">Lunas</span>
         {% else %}
-          <span class="text-danger fw-bold">Belum Lunas</span>
+        <span class="text-danger fw-bold">Belum Lunas</span>
         {% endif %}
       </td>
       <td>
         <div class="d-flex justify-content-center">
-          <a href="#" class="btn btn-warning me-2">Edit</a>
-          <a href="#" class="btn btn-danger">Hapus</a>
+          <a href="{% url 'edit_data' h.id %}" class="btn btn-warning me-2">Edit</a>
+          <form action="{% url 'hapus_data' h.id %}" method="post" onsubmit="return confirm('Apakah Anda yakin ingin menghapus data ini?');">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Hapus</button>
+          </form>
         </div>
       </td>
     </tr>
     {% empty %}
     <tr>
-      <td colspan="4">Tidak ada data hutang.</td>
+      <td colspan="8" class="text-center">Tidak ada data hutang.</td>
     </tr>
     {% endfor %}
   </tbody>
